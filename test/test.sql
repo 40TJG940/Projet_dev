@@ -1,0 +1,42 @@
+ 
+
+CREATE TABLE FileAttente (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    IDUtilisateurEnAttente INTEGER,
+    DateEntree DATETIME DEFAULT CURRENT_TIMESTAMP,
+    AdresseIP TEXT,
+    Port INTEGER,
+    FOREIGN KEY (IDUtilisateurEnAttente) REFERENCES Utilisateurs(ID)
+);
+
+CREATE TABLE Parties (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    IDJoueur1 INTEGER,
+    IDJoueur2 INTEGER,
+    PlateauJeu TEXT,
+    StatutFinPartie BOOLEAN DEFAULT FALSE,
+    IDJoueurGagnant INTEGER,
+    IDJoueurPerdant INTEGER,
+    FOREIGN KEY (IDJoueur1) REFERENCES Utilisateurs(ID),
+    FOREIGN KEY (IDJoueur2) REFERENCES Utilisateurs(ID)
+);  
+
+CREATE TABLE Tours (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    IDPartie INTEGER,
+    IDJoueurQuiAJoue INTEGER,
+    InformationCoupJoue TEXT,
+    DateTour DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (IDPartie) REFERENCES Parties(ID),
+    FOREIGN KEY (IDJoueurQuiAJoue) REFERENCES Utilisateurs(ID)
+);
+
+CREATE TABLE Messages (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    IDPartie INTEGER,
+    IDUtilisateur INTEGER,
+    ContenuMessage TEXT,
+    DateEnvoi DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (IDPartie) REFERENCES Parties(ID),
+    FOREIGN KEY (IDUtilisateur) REFERENCES Utilisateurs(ID)
+);

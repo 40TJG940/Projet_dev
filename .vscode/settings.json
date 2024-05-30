@@ -1,0 +1,19 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "192.168.27.70",
+            "port": 3306,
+            "driver": "MySQL",
+            "password": "T@kbouik1999",
+            "name": "Local instance MySQL80",
+            "database": "MySQL80",
+            "username": "julien"
+        }
+    ]
+}
