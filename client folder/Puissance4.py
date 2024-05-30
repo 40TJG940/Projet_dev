@@ -192,7 +192,3 @@ class Game:
                         self.turn = self.turn % 2
         pygame.quit()
 
-
-
-
-

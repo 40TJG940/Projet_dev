@@ -25,6 +25,7 @@ time.sleep(1.3) # Pause the program for 1.3 seconds
 
 print("envoi du nom du joueur au serveur")
 Soket_client.send_message("add_playername") # Call the send_message method from the ClientSocket class in the client_socket.py file
+time.sleep(1.3) # Pause the program for 1.3 seconds
 Soket_client.send_message({game.player1}) # Call the send_message method from the ClientSocket class in the client_socket.py file
 print("attente de la confirmation du serveur")
 message = Soket_client.receive_message() # Call the receive_message method from the ClientSocket class in the client_socket.py file
@@ -40,4 +41,4 @@ print("attente de l'adversaire")
 
 
 
-game.play() # Call the play method from the Game class in the Puissance4.py file
+#game.play() # Call the play method from the Game class in the Puissance4.py file

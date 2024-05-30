@@ -18,7 +18,7 @@ if __name__ == '__main__':  # This is necessary for Windows because the multipro
     err = socket_server.ServerIsErr() # Start the server
 
     if err == True:
-        print('Arrêt du serveur imminent !!!')
+        print('Arrêt du serveur imminent M!!!')
         os.system('powershell kill -n python3.10')
         exit()
     
@@ -36,9 +36,9 @@ if __name__ == '__main__':  # This is necessary for Windows because the multipro
             print('nombre de client connecté :', socket_server.GetClientCompter())
             print('Pas de client connecté')
 
-        if keyboard.is_pressed('q'):
-            socket_server.StopParalleleClientManager()
-            exit()
+        # if keyboard.is_pressed('q'):
+        #     socket_server.StopParalleleClientManager()
+        #     exit()
             
 
         COMPTEUR += 1

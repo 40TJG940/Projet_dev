@@ -20,6 +20,7 @@ class SokServer:
         self.ClientID = {}
         self.ClientCompter = 0
         self.addr = None
+        self.mes = None
 
         global SystemPassCompter
         print('Passage dans __init__ numéro :', SystemPassCompter)
@@ -87,6 +88,10 @@ class SokServer:
         for client in self.ClientID:
             print(self.ClientID[client],'\r')
         print('--- Client Compter:', self.ClientCompter)
+        print('--- Last message :', self.mes)
+
+
+
 
     def StartParalleleClientManager(self):
         self.stop_thread = False
@@ -95,7 +100,10 @@ class SokServer:
 
     def StopParalleleClientManager(self):
         self.stop_thread = True
-        print('Arrêt du serveur imminent !!!')
+        print('Arrêt du serveur imminent THSP !!!')
+
+
+
 
     def GetClientCompter(self):
         return self.ClientCompter 
@@ -132,19 +140,19 @@ class SokServer:
             
             con, addr = self.s.accept() # Accepte la connexion
             print('Connecté par', addr)  # Affiche l'adresse du client
-            
+            con.sendall('Reception de donnée en cour '.encode())
             data = con.recv(1024) # Récupère les données du client
             if data.decode() == 'lancer une partie':
                 print('Demande acceptée')
-                con.sendall('demande accepter'.encode())
+
                 self.Add_ClientID(addr,self.aff)
-                SQL_con.execute("INSERT INTO  (player1, player2) VALUES ('', '')")
-            # if data.decode() == 'add_playername':
-            #     print('adding player name')
-            #     data = data.decode()
-            #     print('player name :', data)
-            #     con.sendall('joueur ajouté'.encode())
-            
+            if data.decode() == 'add_playername':
+                data = con.recv(1024)
+                self.mes = data.decode()
+                print('Demande acceptée')
+                self.Add_ClientID(addr,self.aff)
+                con.sendall('joueur ajouté'.encode())
+
             time.sleep(0.01)
         
     def client_connect(self):

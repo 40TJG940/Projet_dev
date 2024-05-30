@@ -17,7 +17,8 @@ class ClientSocket:
         self.s.connect(server_address)
 
     def send_message(self, message):
-        self.s.sendall(self.message.encode())
+        self.message = message
+        self.s.sendall(str(self.message).encode())
 
     def receive_message(self):
         data = self.s.recv(1024).decode()
